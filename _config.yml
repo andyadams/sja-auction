@@ -1,0 +1,32 @@
+title: St. Joan of Arc Silent Auction
+description: Bid on donated items to support the St. Joan of Arc Boys & Girls Summer Camp.
+baseurl: ""
+url: ""
+
+formspree_endpoint: "https://formspree.io/f/mojrwdor"
+contact_email: "andyadamscp@gmail.com"
+
+event:
+  date: "May 30, 2026"
+  location: "St. Joan of Arc Parish Hall"
+
+collections:
+  items:
+    output: true
+    permalink: /items/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: items
+    values:
+      layout: item
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - tailwind-plus-spotlight
+  - items
+  - node_modules
+  - vendor

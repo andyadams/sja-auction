@@ -1,0 +1,164 @@
+---
+layout: default
+---
+
+<article class="mx-auto max-w-3xl px-4 py-12 sm:px-8 sm:py-16">
+  <nav class="mb-8 text-sm">
+    <a href="{{ '/#items' | relative_url }}" class="inline-flex items-center text-zinc-500 hover:text-brand-700">
+      <svg class="mr-1 h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M9.25 5.75 6.75 8l2.5 2.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      All items
+    </a>
+  </nav>
+
+  <header>
+    <h1 class="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">{{ page.title }}</h1>
+    {% if page.short_description %}
+      <p class="mt-3 text-lg text-zinc-600">{{ page.short_description }}</p>
+    {% endif %}
+    <dl class="mt-6 flex flex-wrap gap-x-10 gap-y-3 text-sm">
+      {% if page.donor %}
+        <div>
+          <dt class="font-semibold text-zinc-700">Donated by</dt>
+          <dd class="text-zinc-600">{{ page.donor }}</dd>
+        </div>
+      {% endif %}
+      {% if page.estimated_value %}
+        <div>
+          <dt class="font-semibold text-zinc-700">Estimated value</dt>
+          <dd class="text-zinc-600">{{ page.estimated_value }}</dd>
+        </div>
+      {% endif %}
+      {% if page.starting_bid %}
+        <div>
+          <dt class="font-semibold text-zinc-700">Starting bid</dt>
+          <dd class="text-zinc-600">{{ page.starting_bid }}</dd>
+        </div>
+      {% endif %}
+    </dl>
+  </header>
+
+  {% assign hero_is_svg = page.image | default: '' | downcase | slice: -4, 4 %}
+  {% if hero_is_svg == '.svg' %}
+    <div class="mt-10 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-amber-50 p-10 ring-1 ring-zinc-200">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="max-h-full max-w-full object-contain" />
+    </div>
+  {% else %}
+  <div class="mt-10 overflow-hidden rounded-2xl bg-zinc-100 ring-1 ring-zinc-200">
+    {% if page.image %}
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="h-auto w-full object-cover" />
+    {% else %}
+      <div class="flex aspect-[4/3] w-full items-center justify-center bg-gradient-to-br from-zinc-200 to-zinc-300 text-zinc-500">
+        <svg class="h-20 w-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% if page.image_credit %}
+    <p class="mt-2 text-xs text-zinc-400">{{ page.image_credit }}</p>
+  {% endif %}
+
+  <div class="prose prose-zinc mt-10 max-w-none">
+    {{ content }}
+  </div>
+
+  <section class="mt-16 rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8">
+    <h2 class="text-xl font-semibold text-zinc-900">Submit a bid</h2>
+    <p class="mt-2 text-sm text-zinc-600">
+      Enter your bid below. The highest bid at the close of the auction wins. We'll contact you to
+      arrange payment and pickup.
+    </p>
+
+    <form id="bid-form" action="{{ site.formspree_endpoint }}" method="POST" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2"
+          data-thank-you="{{ '/thank-you/' | relative_url }}">
+      <input type="hidden" name="item" value="{{ page.title }}" />
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+      <div class="sm:col-span-2">
+        <label for="name" class="block text-sm font-medium text-zinc-700">Name</label>
+        <input type="text" id="name" name="name" required
+               class="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-zinc-700">Email</label>
+        <input type="email" id="email" name="email" required
+               class="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="phone" class="block text-sm font-medium text-zinc-700">Phone</label>
+        <input type="tel" id="phone" name="phone"
+               class="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none" />
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="bid" class="block text-sm font-medium text-zinc-700">Your bid (USD)</label>
+        <div class="relative mt-1">
+          <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-400">$</span>
+          <input type="number" id="bid" name="bid_amount" min="1" step="1" required
+                 class="block w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 pl-7 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none" />
+        </div>
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="notes" class="block text-sm font-medium text-zinc-700">Notes (optional)</label>
+        <textarea id="notes" name="notes" rows="3"
+                  class="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none"></textarea>
+      </div>
+
+      <div class="sm:col-span-2">
+        <button type="submit"
+                class="inline-flex w-full items-center justify-center rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 sm:w-auto disabled:opacity-60">
+          Submit bid
+        </button>
+      </div>
+
+      <p id="bid-form-error" class="hidden sm:col-span-2 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-800 ring-1 ring-rose-200" role="alert"></p>
+    </form>
+
+    <script>
+      (function () {
+        var form = document.getElementById('bid-form');
+        if (!form) return;
+        var errorEl = document.getElementById('bid-form-error');
+        var button = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          errorEl.classList.add('hidden');
+          button.disabled = true;
+          var originalText = button.textContent;
+          button.textContent = 'Submitting…';
+
+          fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form),
+          })
+            .then(function (response) {
+              if (response.ok) {
+                window.location.href = form.dataset.thankYou;
+                return;
+              }
+              return response.json().then(function (data) {
+                var msg = (data && data.errors && data.errors.length)
+                  ? data.errors.map(function (err) { return err.message; }).join(', ')
+                  : 'Something went wrong submitting your bid. Please try again.';
+                throw new Error(msg);
+              });
+            })
+            .catch(function (err) {
+              errorEl.textContent = err.message || 'Network error. Please check your connection and try again.';
+              errorEl.classList.remove('hidden');
+              button.disabled = false;
+              button.textContent = originalText;
+            });
+        });
+      })();
+    </script>
+  </section>
+</article>
