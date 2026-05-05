@@ -1,7 +1,9 @@
 title: St. Joan of Arc Silent Auction
 description: Bid on donated items to support the St. Joan of Arc Boys & Girls Summer Camp.
-baseurl: ""
-url: ""
+# When deploying to a custom domain root, set baseurl to "".
+# When deploying to https://<user>.github.io/<repo>/, set baseurl to "/<repo>".
+baseurl: "/sja-auction"
+url: "https://andyadams.github.io"
 
 formspree_endpoint: "https://formspree.io/f/mojrwdor"
 contact_email: "andyadamscp@gmail.com"
