@@ -35,19 +35,19 @@ title: Home
   </div>
 </section>
 
-<section id="items" class="mx-auto max-w-5xl px-4 py-16 sm:px-8 sm:py-20">
+<section id="items" class="mx-auto max-w-4xl px-4 py-16 sm:px-8 sm:py-20">
   <h2 class="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">Auction items</h2>
   <p class="mt-2 text-zinc-600">Click any item to view details and submit a bid.</p>
 
-  <ul role="list" class="mt-10 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+  <ul role="list" class="mt-10 grid grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2">
     {% assign items = site.items | sort: 'title' %}
     {% for item in items %}
       <li>
         <a href="{{ item.url | relative_url }}" class="group block">
           {% assign is_svg = item.image | default: '' | downcase | slice: -4, 4 %}
-          {% if is_svg == '.svg' %}
+          {% if item.image_fit == 'contain' or is_svg == '.svg' %}
             {% assign img_fit = 'object-contain p-6' %}
-            {% assign img_bg = 'bg-amber-50' %}
+            {% assign img_bg = 'bg-white' %}
           {% else %}
             {% assign img_fit = 'object-cover' %}
             {% assign img_bg = 'bg-zinc-100' %}
