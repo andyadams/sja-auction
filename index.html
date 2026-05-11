@@ -35,11 +35,11 @@ title: Home
   </div>
 </section>
 
-<section id="items" class="mx-auto max-w-4xl px-4 py-16 sm:px-8 sm:py-20">
+<section id="items" class="mx-auto max-w-5xl px-4 py-16 sm:px-8 sm:py-20">
   <h2 class="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">Auction items</h2>
   <p class="mt-2 text-zinc-600">Click any item to view details and submit a bid.</p>
 
-  <ul role="list" class="mt-10 grid grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2">
+  <ul role="list" class="mt-10 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
     {% assign items = site.items | sort: 'title' %}
     {% for item in items %}
       <li>
