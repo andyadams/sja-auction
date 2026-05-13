@@ -17,6 +17,7 @@ layout: default
     {% if page.short_description %}
       <p class="mt-3 text-lg text-zinc-600">{{ page.short_description }}</p>
     {% endif %}
+    {% assign current_bid = site.data.current_bids[page.slug] %}
     <dl class="mt-6 flex flex-wrap gap-x-10 gap-y-3 text-sm">
       {% if page.donor %}
         <div>
@@ -34,6 +35,12 @@ layout: default
         <div>
           <dt class="font-semibold text-zinc-700">Starting bid</dt>
           <dd class="text-zinc-600">{{ page.starting_bid }}</dd>
+        </div>
+      {% endif %}
+      {% if current_bid %}
+        <div>
+          <dt class="font-semibold text-zinc-700">Current bid</dt>
+          <dd class="font-semibold text-brand-700">${{ current_bid }}</dd>
         </div>
       {% endif %}
     </dl>
@@ -71,6 +78,14 @@ layout: default
       Enter your bid below. The highest bid at the close of the auction wins. We'll contact you to
       arrange payment and pickup.
     </p>
+
+    {% if current_bid %}
+      <div class="mt-6 rounded-xl border border-brand-100 bg-brand-50 p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">Current bid</p>
+        <p class="mt-1 text-3xl font-bold text-brand-700">${{ current_bid }}</p>
+        <p class="mt-1 text-xs text-zinc-500">Updated nightly — your bid may not be the latest.</p>
+      </div>
+    {% endif %}
 
     <form id="bid-form" action="{{ site.formspree_endpoint }}" method="POST" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2"
           data-thank-you="{{ '/thank-you/' | relative_url }}">
