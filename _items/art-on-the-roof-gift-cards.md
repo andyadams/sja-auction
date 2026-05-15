@@ -1,14 +1,14 @@
 ---
-title: "$25 Gift Card to Art on the Roof"
-short_description: "A $25 gift card to Art on the Roof — a rooftop art studio in Rathdrum offering classes in watercolor, acrylic, and mixed media. Two available — each card auctioned separately."
+title: "$50 Gift Card to Art on the Roof"
+short_description: "A $50 gift card to Art on the Roof — a rooftop art studio in Rathdrum offering classes in watercolor, acrylic, and mixed media. Two available — each card auctioned separately."
 donor: "Art on the Roof"
-estimated_value: "$25 each"
+estimated_value: "$50 each"
 starting_bid: "$15"
 image: "/assets/images/art-on-the-roof.jpg"
 image_credit: "Painting from the Art on the Roof portfolio"
 ---
 
-A **$25 gift card** to **Art on the Roof**, a teaching studio tucked into a
+A **$50 gift card** to **Art on the Roof**, a teaching studio tucked into a
 rooftop garden in downtown Rathdrum. Classes welcome all ages and all skill
 levels — from absolute beginners to established artists working side by side.
 
