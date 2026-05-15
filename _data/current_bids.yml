@@ -1,3 +1,7 @@
 # Top bid recorded for each item, keyed by item slug (filename without .md).
 # Update from the Formspree submissions; the site re-renders nightly.
-triple-play-resort-night: 100
+triple-play-resort-night: 125
+hilton-vacation-club-stay: 200
+cda-resort-park-tower: 200
+cda-resort-premier-lake-tower: 200
+drama-theater-summer-camp: 150
