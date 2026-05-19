@@ -1,8 +1,20 @@
-# Top bid recorded for each item, keyed by item slug (filename without .md).
-# Update from the Formspree submissions; the site re-renders nightly.
-triple-play-resort-night: 125
-hilton-vacation-club-stay: 200
-cda-resort-park-tower: 250
-cda-resort-premier-lake-tower: 300
-drama-theater-summer-camp: 150
-fishermans-market-gift-certificates: 25
+# Top bid(s) recorded for each item, keyed by item slug (filename without .md).
+# Each value is a list in descending order. For multi-lot items (e.g. two gift
+# cards), list the top N bids — the page shows 1st and 2nd. Site re-renders
+# nightly.
+triple-play-resort-night:
+  - 125
+hilton-vacation-club-stay:
+  - 200
+cda-resort-park-tower:
+  - 250
+cda-resort-premier-lake-tower:
+  - 300
+drama-theater-summer-camp:
+  - 150
+fishermans-market-gift-certificates:
+  - 25
+art-on-the-roof-gift-cards:
+  - 25
+tonys-on-the-lake-gift-certificates:
+  - 25

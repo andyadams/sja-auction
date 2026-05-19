@@ -4,6 +4,7 @@ short_description: "A $25 gift certificate to Tony's on the Lake — Italian din
 donor: "Tony's on the Lake"
 estimated_value: "$25 each"
 starting_bid: "$15"
+lots: 2
 image: "/assets/images/tonys-on-the-lake.webp"
 ---
 

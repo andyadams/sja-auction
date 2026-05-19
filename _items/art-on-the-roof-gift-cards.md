@@ -4,6 +4,7 @@ short_description: "A $50 gift card to Art on the Roof — a rooftop art studio 
 donor: "Art on the Roof"
 estimated_value: "$50 each"
 starting_bid: "$15"
+lots: 2
 image: "/assets/images/art-on-the-roof.jpg"
 image_credit: "Painting from the Art on the Roof portfolio"
 ---

@@ -4,6 +4,7 @@ short_description: "A $25 gift certificate to Fisherman's Market & Grill in Coeu
 donor: "Fisherman's Market & Grill"
 estimated_value: "$25 each"
 starting_bid: "$15"
+lots: 2
 image: "/assets/images/fishermans-market.jpg"
 ---
 

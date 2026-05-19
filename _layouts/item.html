@@ -17,7 +17,10 @@ layout: default
     {% if page.short_description %}
       <p class="mt-3 text-lg text-zinc-600">{{ page.short_description }}</p>
     {% endif %}
-    {% assign current_bid = site.data.current_bids[page.slug] %}
+    {% assign current_bids = site.data.current_bids[page.slug] %}
+    {% assign lots = page.lots | default: 1 %}
+    {% assign has_bids = false %}
+    {% if current_bids and current_bids.size > 0 %}{% assign has_bids = true %}{% endif %}
     <dl class="mt-6 flex flex-wrap gap-x-10 gap-y-3 text-sm">
       {% if page.donor %}
         <div>
@@ -37,11 +40,22 @@ layout: default
           <dd class="text-zinc-600">{{ page.starting_bid }}</dd>
         </div>
       {% endif %}
-      {% if current_bid %}
-        <div>
-          <dt class="font-semibold text-zinc-700">Current bid</dt>
-          <dd class="font-semibold text-brand-700">${{ current_bid }}</dd>
-        </div>
+      {% if has_bids %}
+        {% if lots > 1 %}
+          <div>
+            <dt class="font-semibold text-zinc-700">1st bid</dt>
+            <dd class="font-semibold text-brand-700">${{ current_bids[0] }}</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-zinc-700">2nd bid</dt>
+            <dd class="font-semibold text-brand-700">{% if current_bids[1] %}${{ current_bids[1] }}{% else %}<span class="text-zinc-400">—</span>{% endif %}</dd>
+          </div>
+        {% else %}
+          <div>
+            <dt class="font-semibold text-zinc-700">Current bid</dt>
+            <dd class="font-semibold text-brand-700">${{ current_bids[0] }}</dd>
+          </div>
+        {% endif %}
       {% endif %}
     </dl>
   </header>
@@ -79,11 +93,26 @@ layout: default
       arrange payment and pickup.
     </p>
 
-    {% if current_bid %}
+    {% if has_bids %}
       <div class="mt-6 rounded-xl border border-brand-100 bg-brand-50 p-4">
-        <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">Current bid</p>
-        <p class="mt-1 text-3xl font-bold text-brand-700">${{ current_bid }}</p>
-        <p class="mt-1 text-xs text-zinc-500">Updated nightly — your bid may not be the latest.</p>
+        {% if lots > 1 %}
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">Current bids</p>
+          <div class="mt-2 flex gap-10">
+            <div>
+              <p class="text-xs text-zinc-500">1st</p>
+              <p class="text-3xl font-bold text-brand-700">${{ current_bids[0] }}</p>
+            </div>
+            <div>
+              <p class="text-xs text-zinc-500">2nd</p>
+              <p class="text-3xl font-bold text-brand-700">{% if current_bids[1] %}${{ current_bids[1] }}{% else %}<span class="text-zinc-400">—</span>{% endif %}</p>
+            </div>
+          </div>
+          <p class="mt-2 text-xs text-zinc-500">Two available — top two bidders win. Updated nightly.</p>
+        {% else %}
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">Current bid</p>
+          <p class="mt-1 text-3xl font-bold text-brand-700">${{ current_bids[0] }}</p>
+          <p class="mt-1 text-xs text-zinc-500">Updated nightly — your bid may not be the latest.</p>
+        {% endif %}
       </div>
     {% endif %}
 
