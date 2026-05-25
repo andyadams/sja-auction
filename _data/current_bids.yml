@@ -3,13 +3,13 @@
 # cards), list the top N bids — the page shows 1st and 2nd. Site re-renders
 # nightly.
 triple-play-resort-night:
-  - 125
+  - 150
 hilton-vacation-club-stay:
-  - 200
+  - 250
 cda-resort-park-tower:
   - 250
 cda-resort-premier-lake-tower:
-  - 300
+  - 350
 drama-theater-summer-camp:
   - 150
 fishermans-market-gift-certificates:
@@ -18,3 +18,4 @@ art-on-the-roof-gift-cards:
   - 25
 tonys-on-the-lake-gift-certificates:
   - 25
+  - 15
